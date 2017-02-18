@@ -3,13 +3,13 @@ window.onload = initPage;
 var welcomePaneShowing = true;
 
 function initPage() {
-	var images = document.getElementById("schedulePane").getElementsByTagName("img");
+	var tabs = document.getElementById("tabs").getElementsByTagName("a");
 
-	for (var i = 0; i < images.length; i++) {
-		var currentImage = images[i];
-		currentImage.onmouseover = showHint;
-		currentImage.onmouseout = hideHint;
-		currentImage.onclick = showTab;
+	for (var i = 0; i < tabs.length; i++) {
+		var currentTab = tabs[i];
+		currentTab.onmouseover = showHint;
+		currentTab.onmouseout = hideHint;
+		currentTab.onclick = showTab;
 	}
 
 	function showHint() {
@@ -45,13 +45,13 @@ function initPage() {
 	function showTab() {
 		var selectedTab = this.title;
 
-		var images = document.getElementById("tabs").getElementsByTagName("img");
-		for (var i = 0; i < images.length; i++) {
-			var currentImage = images[i];
-			if (currentImage.title == selectedTab) {
-				currentImage.src = "images/" + currentImage.title + "Top.png";
+		var tabs = document.getElementById("tabs").getElementsByTagName("a");
+		for (var i = 0; i < tabs.length; i++) {
+			var currentTab = tabs[i];
+			if (currentTab.title == selectedTab) {
+				currentTab.className = "active";
 			} else {
-				currentImage.src = "images/" + currentImage.title + "Down.png";
+				currentTab.className = "inactive";
 			}
 		}
 	}
