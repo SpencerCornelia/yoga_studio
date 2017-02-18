@@ -7,17 +7,17 @@ function initPage() {
 
 	for (var i = 0; i < tabs.length; i++) {
 		var currentTab = tabs[i];
-		currentTab.onmouseover = showHint;
-		currentTab.onmouseout = hideHint;
-		currentTab.onclick = showTab;
+		addEventHandler(currentTab, "mouseover", showHint);
+		addEventHandler(currentTab, "mouseout", hideHint);
+		addEventHandler(currentTab, "click", showTab);
 	}
 
-	function showHint() {
+	function showHint(e) {
 		if (!welcomePaneShowing) {
 			return;
 		}
 
-		switch (this.title) {
+		switch (e.title) {
 			case "beginners":
 				var hintText = "Just getting started? Come join us!";
 				break;
@@ -35,15 +35,15 @@ function initPage() {
 		contentPane.innerHTML = "<h3>" + hintText + "</h3>";
 	}
 
-	function hideHint() {
+	function hideHint(e) {
 		if (welcomePaneShowing) {
 			var contentPane = document.getElementById("content");
 			contentPane.innerHTML = "<h3>Click a tab to display the course schedule for the class</h3>";
 		}
 	}
 
-	function showTab() {
-		var selectedTab = this.title;
+	function showTab(e) {
+		var selectedTab = e.title;
 
 		if (selectedTab == "Welcome") {
 			welcomePaneShowing = true;
