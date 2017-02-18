@@ -45,6 +45,13 @@ function initPage() {
 	function showTab() {
 		var selectedTab = this.title;
 
+		if (selectedTab == "Welcome") {
+			welcomePaneShowing = true;
+			document.getElementById("content").innerHTML = "<h3>Click a tab to display the course schedule for the class</h3>";
+		} else {
+			welcomePaneShowing = false;
+		}
+
 		var tabs = document.getElementById("tabs").getElementsByTagName("a");
 		for (var i = 0; i < tabs.length; i++) {
 			var currentTab = tabs[i];
