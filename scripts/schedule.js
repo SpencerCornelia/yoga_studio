@@ -54,5 +54,22 @@ function initPage() {
 				currentTab.className = "inactive";
 			}
 		}
+
+		var request = createRequest();
+		if (request == null) {
+			return;
+		}
+
+		request.onreadystatechange = showSchedule;
+		request.open("GET", selectedTab + ".html", true);
+		request.send(null);
+	}
+
+	function showSchedule() {
+		if (request.readyState == 4) {
+			if (request.status == 200) {
+				document.getElementById("content").innerHTML = request.responseText;
+			}
+		}
 	}
 }
